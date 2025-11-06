@@ -6,13 +6,9 @@ __pycache__/
 *.db
 
 # Ignore datasets and heavy model files
-data/fer2013/
-data/test/
-data/train/
-data/val/
-*.pt
-*.onnx.data
-
+models/
+*.onnx
+*.h5
 # Ignore build and system files
 dist/
 build/

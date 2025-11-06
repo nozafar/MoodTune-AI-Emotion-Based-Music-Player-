@@ -1,23 +1,33 @@
 ```markdown
-# 🎵 MoodTune AI (Emotion-Based Music Player)
+# 🎵 MoodTune AI — Emotion Based Music Player
 
-MoodTune AI is a desktop application that detects a user's **facial emotion** using a real-time webcam feed and automatically plays music from mood-based playlists.
+MoodTune AI is a desktop application that detects a user's **facial emotion** in real-time using a webcam and automatically plays music from mood-based playlists.
 
-It combines computer vision, deep learning (ONNX), audio control, and a modern GUI to create an adaptive, personalized music experience.
+This project combines:
+- Computer Vision (MediaPipe)
+- ONNX AI inference
+- Pygame audio playback
+- CustomTkinter GUI
 
 ---
 
-## ✨ Features
+## ⭐ Repository
 
-✅ Live emotion detection  
-✅ Real-time computer vision  
-✅ Mood-based music playlists  
-✅ Play / Pause / Resume / Next / Stop  
+GitHub: https://github.com/nozafar/MoodTune-AI-Emotion-Based-Music-Player-
+
+---
+
+## 🚀 Features
+
+✅ Real-time webcam emotion detection  
+✅ Mood-based playlist selection  
+✅ Modern UI (CustomTkinter)  
+✅ Dark / Light theme toggle  
 ✅ Volume slider  
-✅ Dark/Light theme toggle  
-✅ Replay last detected mood  
-✅ Clean UI  
-✅ Debug logs for troubleshooting  
+✅ Play / Pause / Resume / Next / Stop  
+✅ Replay last detected mood playlist  
+✅ Debug terminal logging  
+✅ Lightweight ONNX inference (no heavy TensorFlow)
 
 Supported emotions:
 - Happy
@@ -29,84 +39,92 @@ Supported emotions:
 
 ---
 
-## 🧠 AI Model (ONNX)
+## 🧠 AI Model Details
 
-The real-time emotion classifier was trained using:
-- PyTorch
-- FER-2013 dataset
-- Exported to ONNX format
-
-Inference runs on CPU using **onnxruntime**.
+- Trained on **FER-2013** dataset
+- Built using **PyTorch**
+- Exported to **ONNX**
+- Runs efficiently on CPU
+- Uses landmark features from MediaPipe
 
 ---
 
-## 🖥 Tech Stack
+## 🛠 Tech Stack
 
 | Component | Technology |
 |----------|------------|
-| GUI | CustomTkinter |
-| AI Inference | ONNX Runtime |
-| Computer Vision | MediaPipe FaceMesh |
-| Audio Playback | Pygame Mixer |
+| UI | CustomTkinter |
+| AI Runtime | ONNX Runtime |
+| Computer Vision | MediaPipe |
+| Audio | Pygame Mixer |
 | Dataset | FER-2013 |
+| Language | Python 3.x |
 
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure
 
 ```
 
-moodtune/
+MoodTune-AI-Emotion-Based-Music-Player-/
 │
-├─ app.py                  # Main UI application
-├─ mood.py                 # ONNX inference / vision logic
-├─ player.py               # Music playback manager
+├── app.py                     # Main UI application
+├── mood.py                    # ONNX inference logic
+├── player.py                  # Music playback system
+├── db.py                      # (optional) storage
+├── train.py                   # Model training script
+├── dataset_fer.py             # Dataset loader
 │
-├─ models/
-│    └─ emotion.onnx       # AI model
+├── models/
+│   ├── emotion.onnx
+│   ├── emotion.onnx.data
+│   └── emotion.pt
 │
-├─ data/
-│    └─ songs/
-│         ├─ angry/
-│         ├─ happy/
-│         ├─ sad/
-│         ├─ neutral/
-│         ├─ fearful/
-│         └─ surprised/
+├── data/
+│   ├── songs/
+│   │   ├── angry/
+│   │   ├── happy/
+│   │   ├── sad/
+│   │   ├── neutral/
+│   │   ├── fearful/
+│   │   └── surprised/
+│   │
+│   ├── fer2013/ (dataset)
+│   │   ├── train/
+│   │   ├── test/
+│   │   └── val/
 │
-└─ assets/                 # (optional) images/icons
+├── moodtune.db                # (optional) database
+├── readme.md                  # You are here
+└── requirements.txt           # Dependencies
 
 ````
 
 ---
 
-## 🚀 Installation
+## 📦 Installation
 
-### 1. Clone repository
+### 1️⃣ Clone the repository
+
 ```bash
-git clone https://github.com/your-username/moodtune.git
-cd moodtune
+git clone https://github.com/nozafar/MoodTune-AI-Emotion-Based-Music-Player-.git
+cd MoodTune-AI-Emotion-Based-Music-Player-
 ````
 
-### 2. Create virtual environment (recommended)
+### 2️⃣ Create virtual environment (recommended)
 
 ```bash
 python -m venv .venv
-```
-
-Activate it:
-
-```bash
 .venv\Scripts\activate
 ```
 
-### 3. Install required packages
+### 3️⃣ Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-**Example requirements.txt**
+Example `requirements.txt`:
 
 ```
 customtkinter
@@ -115,11 +133,12 @@ mediapipe
 pygame
 onnxruntime
 numpy
+Pillow
 ```
 
 ---
 
-## ▶️ Run the program
+## ▶️ Run the Application
 
 ```bash
 python app.py
@@ -127,7 +146,7 @@ python app.py
 
 ---
 
-## 🎶 Add your music
+## 🎶 Add Songs
 
 Place `.mp3`, `.wav`, or `.ogg` files into:
 
@@ -135,111 +154,153 @@ Place `.mp3`, `.wav`, or `.ogg` files into:
 data/songs/happy
 data/songs/angry
 data/songs/sad
-...
+data/songs/neutral
+data/songs/fearful
+data/songs/surprised
 ```
 
-Playlists are mood-based.
+The app will automatically pick songs from the detected mood folder.
 
 ---
 
-## 🧩 How It Works
+## 🎛️ UI Controls
 
-1. Webcam detects a face
-2. MediaPipe extracts facial landmarks
-3. ONNX model predicts emotion
-4. App selects corresponding folder
-5. Random playlist begins
-6. You can control playback freely
-
----
-
-## 🎛 Controls
-
-* 🎥 Detect & Play
-* 🔁 Play Again
-* ⏸ Pause
-* ▶ Resume
-* ⏭ Next Song
-* ⛔ Stop
-* 🔊 Volume Slider
-* 🌓 Theme Toggle
-* 🚪 Exit
+| Button        | Action                       |
+| ------------- | ---------------------------- |
+| Detect & Play | Detect mood + start playlist |
+| Play Again    | Replay last mood playlist    |
+| Pause         | Pause audio                  |
+| Resume        | Resume audio                 |
+| Next          | Skip to next track           |
+| Stop          | Stop music                   |
+| Volume Slider | Adjust volume                |
+| Toggle Theme  | Switch Dark / Light          |
+| Exit          | Close application            |
 
 ---
 
 ## 🌓 Theme Support
 
-* Default: Dark
-* Toggle to Light anytime
+* Default: **Dark mode**
+* Click **Toggle Theme** to switch to light UI
 
 ---
 
-## 📌 Logs (console)
+## 🔧 Debug Logging
 
-Terminal logs help with troubleshooting:
+Console displays useful events:
 
 ```
 [DEBUG] Model predicted mood: happy
-[DEBUG] Folder resolved: data/songs/happy
-[DEBUG] Files: [...]
+[DEBUG] Songs found in folder
 ```
 
 ---
 
-## 🧭 Roadmap
+## 🏗 Training (optional)
 
-Future planned upgrades:
+If you want to train your own model:
 
-* Face login
-* Mood history database
-* Analytics charts
-* Personalized recommendations
-* Song rating preferences
-* Animated UI transitions
-* Packaged EXE build
+```bash
+python train.py
+```
+
+Export the ONNX:
+
+```bash
+python export_onnx.py
+```
 
 ---
 
-## 🏁 Build Windows Executable (optional)
+## 🧾 Build Windows EXE (optional)
 
 ```bash
 pip install pyinstaller
 pyinstaller --noconsole --onefile app.py
 ```
 
-Executable will appear in `dist/`.
+Executable appears in:
+
+```
+/dist/app.exe
+```
 
 ---
 
-## 🤝 Contributing
+## 📷 Screenshots (optional)
 
-Pull requests are welcome!
-Feel free to improve UI, playlist logic, or AI accuracy.
+Place images in:
+
+```
+assets/
+```
+
+Add them like:
+
+```
+![Screenshot](assets/screenshot01.png)
+```
+
+---
+
+## 📌 Roadmap
+
+* ✅ Better UI controls
+* ✅ Dark/Light theme
+* ✅ Volume slider
+* 📊 Mood history statistics
+* 📈 Analytics charts
+* 🔐 Face login recognition
+* ❤️ Personalized recommendations
+* 🎚 EQ / audio effects
+* 📦 Auto update system
+
+---
+
+## 🙌 Contributing
+
+Pull Requests welcome!
+
+How to contribute:
+
+1. Fork the repo
+2. Create a new branch
+3. Commit your changes
+4. Submit a PR
 
 ---
 
 ## 📜 License
 
-MIT License
-Free for personal and commercial use.
+MIT License — free for personal & commercial use.
 
 ---
 
-## ⭐ Support
+## ⭐ Support the project!
 
-If you like this project, please ⭐ it on GitHub!
+If you like this project, please star ⭐ the repo — it helps a lot!
+
+```
+⭐ GitHub: https://github.com/nozafar/MoodTune-AI-Emotion-Based-Music-Player-
+```
+
+Made with ❤️ by **nozafar**
 
 ```
 
 ---
 
-✅ That’s it — professional, clean, GitHub-ready.  
-Just paste into `README.md` and push.
+✅ You’re all set — just paste this into your repository’s `README.md`.
 
-Want badges + GIF preview?  
-Reply:
+If you want:
 
-> add badges and preview GIF
+📌 badges  
+📌 animated preview GIF  
+📌 demo video section  
+📌 installation screenshots  
 
-Happy shipping! 🚀
+Just say:
+
+> add badges & preview GIF section
 ```
