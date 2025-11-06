@@ -1,5 +1,5 @@
 ```markdown
-# 🎵 MoodTune AI — Emotion Based Music Player
+# 🎵 MoodTune AI — Emotion Based Music Player(DATA INCLUDED FOR TRAINING)
 
 MoodTune AI is a desktop application that detects a user's **facial emotion** in real-time using a webcam and automatically plays music from mood-based playlists.
 
@@ -8,6 +8,7 @@ This project combines:
 - ONNX AI inference
 - Pygame audio playback
 - CustomTkinter GUI
+
 
 ---
 
@@ -141,6 +142,8 @@ Pillow
 ## ▶️ Run the Application
 
 ```bash
+#before running tarin the model scroll below for train model code
+# data inlcluded just train and run
 python app.py
 ```
 
