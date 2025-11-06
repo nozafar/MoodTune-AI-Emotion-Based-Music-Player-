@@ -65,8 +65,6 @@ Supported emotions:
 
 ## 📁 Project Structure
 
-```
-
 MoodTune-AI-Emotion-Based-Music-Player-/
 │
 ├── app.py                     # Main UI application
@@ -98,6 +96,10 @@ MoodTune-AI-Emotion-Based-Music-Player-/
 ├── moodtune.db                # (optional) database
 ├── readme.md                  # You are here
 └── requirements.txt           # Dependencies
+
+```
+
+
 
 ````
 
