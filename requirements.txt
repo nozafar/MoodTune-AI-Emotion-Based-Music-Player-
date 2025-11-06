@@ -1,0 +1,7 @@
+customtkinter
+opencv-python
+mediapipe
+pygame
+onnxruntime
+numpy
+Pillow

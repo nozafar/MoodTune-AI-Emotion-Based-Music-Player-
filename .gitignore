@@ -1,0 +1,21 @@
+# Ignore Python cache and virtual env
+__pycache__/
+*.pyc
+.venv/
+.env/
+*.db
+
+# Ignore datasets and heavy model files
+data/fer2013/
+data/test/
+data/train/
+data/val/
+*.pt
+*.onnx.data
+
+# Ignore build and system files
+dist/
+build/
+*.spec
+.DS_Store
+Thumbs.db
