@@ -287,19 +287,3 @@ If you like this project, please star ⭐ the repo — it helps a lot!
 Made with ❤️ by **nozafar**
 
 ```
-
----
-
-✅ You’re all set — just paste this into your repository’s `README.md`.
-
-If you want:
-
-📌 badges  
-📌 animated preview GIF  
-📌 demo video section  
-📌 installation screenshots  
-
-Just say:
-
-> add badges & preview GIF section
-```
