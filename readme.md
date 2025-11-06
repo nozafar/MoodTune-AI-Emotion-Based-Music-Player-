@@ -97,12 +97,6 @@ MoodTune-AI-Emotion-Based-Music-Player-/
 ├── readme.md                  # You are here
 └── requirements.txt           # Dependencies
 
-```
-
-
-
-````
-
 ---
 
 ## 📦 Installation
